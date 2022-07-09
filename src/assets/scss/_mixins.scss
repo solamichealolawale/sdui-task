@@ -1,0 +1,53 @@
+@mixin screen($class) {
+  @if $class == sm {
+    //Small Screen - Phones/Tablets
+    @media (min-width: 640px) {
+      @content;
+    }
+  } @else if $class == md {
+    //Medium Screen - Tablets
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == lg {
+    //Large Screen - Ipad Pro/Laptops
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $class == lg {
+    //Extra Large Screen - Desktop/Laptops
+    @media (min-width: 1280px) {
+      @content;
+    }
+  } @else {
+    @warn "Screen mixin supports: sm, md, lg, xl";
+  }
+}
+
+@mixin transition($x...) {
+  transition: $x;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin trim-line($value) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+@mixin background {
+  $skeleton-color: #e0e0e0;
+  $skeleton-width: 320px;
+  $skeleton-offset: 100px;
+
+  background-image: linear-gradient(
+    90deg,
+    $skeleton-color 0px,
+    lighten($skeleton-color, 5%) 30px,
+    $skeleton-color 60px
+  );
+  background-size: calc(#{$skeleton-width} + #{$skeleton-offset});
+}
